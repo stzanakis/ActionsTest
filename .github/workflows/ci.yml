@@ -16,6 +16,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+          overwrite-settings: false
           cache: maven
       - name: Cache SonarCloud packages
         uses: actions/cache@v2
@@ -39,7 +40,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: Prepare Settings Deploy
+      - name: Prepare Settings Deploy(Runs on main,master,develop)
+        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'}}
         run: >
           mkdir -p ~/.m2 &&
           echo "<settings><servers><server><id>${REPO_ID}</id><username>${REPO_USERNAME}</username><password>${REPO_PASSWORD}</password></server></servers></settings>" > ~/.m2/settings.xml
@@ -47,8 +49,8 @@ jobs:
           REPO_ID: artifactory.eanadev.org
           REPO_USERNAME: ${{ secrets.REPO_USERNAME }}
           REPO_PASSWORD: ${{ secrets.REPO_PASSWORD }}
-      - if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'}}
-        name: Deploy
+      - name: Deploy(Runs on main,master,develop)
+        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'}}
         run: >
           mvn --batch-mode
           -Dmaven.main.skip=true
