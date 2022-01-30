@@ -9,7 +9,7 @@ on:
       - 'develop'
 
 jobs:
-  build:
+  deploy_libraries:
     runs-on: ubuntu-latest
 
     steps:
