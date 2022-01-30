@@ -52,7 +52,6 @@ jobs:
           -DREPO_ID=artifactory.eanadev.org
           -DREPO_USERNAME=${{ secrets.REPO_USERNAME }}
           -DREPO_PASSWORD=${{ secrets.REPO_PASSWORD }}
-          -s settings.xml
           deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
