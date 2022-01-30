@@ -43,6 +43,10 @@ jobs:
         run: >
           mkdir -p ~/.m2 &&
           echo "<settings><servers><server><id>${REPO_ID}</id><username>${REPO_USERNAME}</username><password>${REPO_PASSWORD}</password></server></servers></settings>" > ~/.m2/settings.xml
+        env:
+          REPO_ID: artifactory.eanadev.org
+          REPO_USERNAME: ${{ secrets.REPO_USERNAME }}
+          REPO_PASSWORD: ${{ secrets.REPO_PASSWORD }}
       - name: Deploy
         run: >
           mvn --batch-mode
@@ -50,7 +54,3 @@ jobs:
           -Dmaven.test.skip=true
           -Dmaven.install.skip=true
           deploy
-        env:
-          REPO_ID: artifactory.eanadev.org
-          REPO_USERNAME: ${{ secrets.REPO_USERNAME }}
-          REPO_PASSWORD: ${{ secrets.REPO_PASSWORD }}
