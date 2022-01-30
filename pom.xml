@@ -12,5 +12,30 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>11</maven.compiler.release>
+    <version.maven.compiler.plugin>3.8.1</version.maven.compiler.plugin>
   </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${version.maven.compiler.plugin}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <distributionManagement>
+    <repository>
+      <id>artifactory.eanadev.org</id>
+      <name>artifactory.eanadev.org-releases</name>
+      <url>https://artifactory.eanadev.org/artifactory/libs-release-local</url>
+    </repository>
+    <snapshotRepository>
+      <id>artifactory.eanadev.org</id>
+      <name>artifactory.eanadev.org-snapshots</name>
+      <url>https://artifactory.eanadev.org/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
