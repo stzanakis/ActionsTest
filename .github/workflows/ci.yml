@@ -69,3 +69,4 @@ jobs:
           -Dmaven.test.skip=true
           -Dmaven.install.skip=true
           deploy
+
