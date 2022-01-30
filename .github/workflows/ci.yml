@@ -23,13 +23,13 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
-      - name: Build - clean jacoco verify
+      - name: Build - Clean Jacoco Verify
         run: >
           mvn --batch-mode --update-snapshots
           clean
           org.jacoco:jacoco-maven-plugin:prepare-agent
           verify
-      - name: Sonar
+      - name: Sonar Analyze
         run: >
           mvn --batch-mode
           org.jacoco:jacoco-maven-plugin:report

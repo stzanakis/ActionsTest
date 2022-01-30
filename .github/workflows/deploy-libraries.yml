@@ -1,4 +1,4 @@
-name: DEPLOY
+name: DEPLOY LIBRARIES
 
 on:
   workflow_run:
@@ -23,7 +23,7 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-      - name: Prepare Settings Deploy(Runs on main,master,develop)
+      - name: Prepare Settings Deploy
         run: >
           mkdir -p ~/.m2 &&
           echo "<settings><servers><server><id>${REPO_ID}</id><username>${REPO_USERNAME}</username><password>${REPO_PASSWORD}</password></server></servers></settings>" > ~/.m2/settings.xml
