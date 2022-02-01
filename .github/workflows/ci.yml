@@ -8,9 +8,7 @@ jobs:
     steps:
       - name: Check env var
         run: |
-          echo $DEV_ENV_FILE >> src/.env
           echo $DEV_ENV_FILE
-          cat src/.env
         env:
           DEV_ENV_FILE : ${{secrets.PROPERTIES}}
       - name: Checkout code
