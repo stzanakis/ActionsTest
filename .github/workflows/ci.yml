@@ -8,7 +8,8 @@ jobs:
     steps:
       - name: Check env var
         run: |
-          echo $DEV_ENV_FILE
+          echo $DEV_ENV_FILE >> text.properties
+          cat text.properties
         env:
           DEV_ENV_FILE : ${{secrets.PROPERTIES}}
       - name: Checkout code
