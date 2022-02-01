@@ -6,6 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check env var
+        run: echo ${{ secrets.PROPERTIES }}
       - name: Checkout code
         uses: actions/checkout@v2
         with:
