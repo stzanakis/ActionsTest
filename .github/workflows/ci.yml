@@ -7,7 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check env var
-        run: echo ${{ secrets.PROPERTIES }}
+        run: |
+          echo $DEV_ENV_FILE >> src/.env
+          echo $DEV_ENV_FILE
+          cat src/.env
+        env:
+          DEV_ENV_FILE : ${{secrets.PROPERTIES}}
       - name: Checkout code
         uses: actions/checkout@v2
         with:
